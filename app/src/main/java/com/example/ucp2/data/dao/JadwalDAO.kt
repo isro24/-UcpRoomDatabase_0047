@@ -17,7 +17,7 @@ interface JadwalDAO {
     fun getAllJadwal(): Flow<List<Jadwal>>
 
     @Query("SELECT * FROM jadwal WHERE id = :id")
-    fun getJadwal(nim: String): Flow<Jadwal>
+    fun getJadwal(id: String): Flow<Jadwal>
 
     @Delete
     suspend fun deleteJadwal(jadwal: Jadwal)
