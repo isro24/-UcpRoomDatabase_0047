@@ -4,7 +4,7 @@ import com.example.ucp2.data.entity.Dokter
 import kotlinx.coroutines.flow.Flow
 
 interface RepositoryDokter {
-    suspend fun insertDokter(dokter: Dokter)
+    suspend fun insertDktr(dokter: Dokter)
 
-    fun getAllDokter(): Flow<List<Dokter>>
+    fun getAllDktr(): Flow<List<Dokter>>
 }
