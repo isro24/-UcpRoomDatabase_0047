@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import com.example.ucp2.data.entity.Dokter
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface DokterDAO {
@@ -11,5 +12,5 @@ interface DokterDAO {
     suspend fun insertDokter(dokter: Dokter)
 
     @Query("SELECT * FROM dokter ORDER BY nama ASC")
-    fun getAllDokter(): List<Dokter>
+    fun getAllDokter(): Flow<List<Dokter>>
 }
