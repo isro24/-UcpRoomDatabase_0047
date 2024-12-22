@@ -6,4 +6,7 @@ interface AlamatNavigasi {
     object DestinasiHomeDokter : AlamatNavigasi {
         override val route = "home"
     }
+    object DestinasiHomeJadwal : AlamatNavigasi {
+        override val route = "homejadwal"
+    }
 }

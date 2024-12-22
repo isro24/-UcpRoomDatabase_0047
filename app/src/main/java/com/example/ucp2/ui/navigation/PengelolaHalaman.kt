@@ -10,6 +10,7 @@ import com.example.ucp2.ui.view.dokter.DestinasiInsertDokter
 import com.example.ucp2.ui.view.dokter.HomeDokterView
 import com.example.ucp2.ui.view.dokter.InsertDokterView
 import com.example.ucp2.ui.view.jadwal.DestinasiInsertJadwal
+import com.example.ucp2.ui.view.jadwal.HomeJadwalView
 import com.example.ucp2.ui.view.jadwal.InsertJadwalView
 
 @Composable
@@ -19,12 +20,15 @@ fun PengelolaHalaman(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiInsertJadwal.route
+        startDestination = AlamatNavigasi.DestinasiHomeDokter.route
     ) {
         composable(route = AlamatNavigasi.DestinasiHomeDokter.route
         ){
             HomeDokterView(
-                onDetailClick = {},
+                onJadwalView = {
+                    navController.navigate(AlamatNavigasi.DestinasiHomeJadwal.route)
+
+                },
                 onAddDokter = {
                     navController.navigate(DestinasiInsertDokter.route)
                 },
@@ -49,6 +53,19 @@ fun PengelolaHalaman(
                 },
                 onNavigate = {
                     navController.navigateUp()
+                },
+                modifier = modifier
+            )
+        }
+        composable(route = AlamatNavigasi.DestinasiHomeJadwal.route
+        ){
+            HomeJadwalView(
+                onDetailClick = {},
+                onAddJadwal = {
+                    navController.navigate(DestinasiInsertJadwal.route)
+                },
+                onKembali = {
+                    navController.navigate(AlamatNavigasi.DestinasiHomeDokter.route)
                 },
                 modifier = modifier
             )

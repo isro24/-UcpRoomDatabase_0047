@@ -1,13 +1,24 @@
-package com.example.ucp2.ui.view.dokter
+package com.example.ucp2.ui.view.jadwal
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -21,15 +32,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.R
-import com.example.ucp2.data.entity.Dokter
+import com.example.ucp2.data.entity.Jadwal
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
+import com.example.ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 
 @Composable
-fun HomeDokterView(
-    viewModel: HomeDokterViewModel = viewModel(factory = PenyediaViewModel.Factory),
-    onAddDokter: () -> Unit,
-    onJadwalView: (String) -> Unit,
+fun HomeJadwalView(
+    viewModel: HomeJadwalViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onAddJadwal: () -> Unit,
+    onKembali:() -> Unit,
+    onDetailClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -40,8 +53,9 @@ fun HomeDokterView(
         HeaderSection()
         BodySection(
             viewModel = viewModel,
-            onAddDokter = onAddDokter,
-            onJadwalView = onJadwalView
+            onAddJadwal = onAddJadwal,
+            onKembali = onKembali,
+            onDetailClick = onDetailClick
         )
     }
 }
@@ -100,9 +114,10 @@ fun HeaderSection() {
 
 @Composable
 fun BodySection(
-    viewModel: HomeDokterViewModel,
-    onAddDokter: () -> Unit,
-    onJadwalView: (String) -> Unit,
+    viewModel: HomeJadwalViewModel,
+    onAddJadwal: () -> Unit,
+    onKembali: () -> Unit,
+    onDetailClick: (String) -> Unit
 ) {
     val homeUiState by viewModel.homeUiState.collectAsState()
 
@@ -165,34 +180,33 @@ fun BodySection(
                 horizontalArrangement = Arrangement.SpaceEvenly
             ) {
                 Button(
-                    onClick = onAddDokter,
+                    onClick = onAddJadwal,
                     modifier = Modifier.weight(0.5f).padding(end = 8.dp)
                 ) {
-                    Text("Tambah Dokter")
+                    Text("Tambah Jadwal")
                 }
                 Button(
-                    onClick = { onJadwalView("homejadwal") },
+                    onClick = onKembali,
                     modifier = Modifier.weight(0.5f).padding(start = 8.dp)
                 ) {
-                    Text("Lihat Jadwal")
+                    Text("Kembali")
                 }
             }
         }
     }
 
-    if (homeUiState.listDokter.isEmpty()) {
+    if (homeUiState.listJadwal.isEmpty()) {
         EmptyState()
     } else {
-        ListDokter(
-            listDokter = homeUiState.listDokter,
-            onClick = onJadwalView
+        ListJadwal(
+            listJadwal = homeUiState.listJadwal,
+            onClick = onDetailClick
         )
     }
 }
-
 @Composable
-fun ListDokter(
-    listDokter: List<Dokter>,
+fun ListJadwal(
+    listJadwal: List<Jadwal>,
     modifier: Modifier = Modifier,
     onClick: (String) -> Unit = {}
 ) {
@@ -203,8 +217,8 @@ fun ListDokter(
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(
-            items = listDokter,
-            itemContent = { dktr ->
+            items = listJadwal,
+            itemContent = { jdwl ->
                 Card(
                     modifier = Modifier
                         .fillMaxWidth()
@@ -231,18 +245,18 @@ fun ListDokter(
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Text(
-                                text = dktr.nama,
+                                text = jdwl.namaPasien,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp,
                                 color = Color.Black
                             )
                             Text(
-                                text = dktr.spesialis,
+                                text = jdwl.tanggalKonsultasi,
                                 fontSize = 14.sp,
                                 color = Color.Gray
                             )
                             Text(
-                                text = dktr.id,
+                                text = jdwl.noHp,
                                 fontSize = 12.sp,
                                 color = Color.Gray
                             )
@@ -268,7 +282,7 @@ fun EmptyState() {
             contentAlignment = Alignment.Center
         ) {
             Text(
-                text = "Tidak ada data dokter.",
+                text = "Tidak ada data jadwal.",
                 fontSize = 14.sp,
                 color = Color.Gray
             )

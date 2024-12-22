@@ -7,6 +7,7 @@ import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.ucp2.KlinikApp
 import com.example.ucp2.ui.viewmodel.dokter.DokterViewModel
 import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
+import com.example.ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.JadwalViewModel
 
 object PenyediaViewModel {
@@ -23,6 +24,11 @@ object PenyediaViewModel {
         }
         initializer {
             JadwalViewModel(
+                klinikApp().containerApp.repositoryJadwal
+            )
+        }
+        initializer {
+            HomeJadwalViewModel(
                 klinikApp().containerApp.repositoryJadwal
             )
         }
