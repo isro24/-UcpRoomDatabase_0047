@@ -9,4 +9,9 @@ interface AlamatNavigasi {
     object DestinasiHomeJadwal : AlamatNavigasi {
         override val route = "homejadwal"
     }
+    object DestinasiDetailJadwal : AlamatNavigasi {
+        override val route = "detail"
+        const val ID = "id"
+        val routeWithArgs = "$route/{$ID}"
+    }
 }
