@@ -3,9 +3,11 @@ package com.example.ucp2.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
+import androidx.navigation.navArgument
 import com.example.ucp2.ui.view.dokter.DestinasiInsertDokter
 import com.example.ucp2.ui.view.dokter.HomeDokterView
 import com.example.ucp2.ui.view.dokter.InsertDokterView
@@ -69,6 +71,30 @@ fun PengelolaHalaman(
                 },
                 modifier = modifier
             )
+        }
+        composable(
+            AlamatNavigasi.DestinasiDetailJadwal.routeWithArgs,
+            arguments = listOf(
+                navArgument(AlamatNavigasi.DestinasiDetailJadwal.ID) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            val id = it.arguments?.getString(AlamatNavigasi.DestinasiDetailJadwal.ID)
+            id?.let { id ->
+                DetailJadwalView(
+                    onBack = {
+                        navController.popBackStack()
+                    },
+                    onEditClick = {
+                        navController.navigate("${AlamatNavigasi.DestinasiUpdateJadwal.route}/$it")
+                    },
+                    modifier = modifier,
+                    onDeleteClick = {
+                        navController.popBackStack()
+                    }
+                )
+            }
         }
     }
 }
