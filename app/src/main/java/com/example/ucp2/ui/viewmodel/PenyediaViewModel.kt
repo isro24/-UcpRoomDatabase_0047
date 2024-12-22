@@ -32,6 +32,11 @@ object PenyediaViewModel {
                 klinikApp().containerApp.repositoryJadwal
             )
         }
+        initializer {
+            DetailJadwalViewModel(
+                klinikApp().containerApp.repositoryJadwal
+            )
+        }
     }
 }
 
