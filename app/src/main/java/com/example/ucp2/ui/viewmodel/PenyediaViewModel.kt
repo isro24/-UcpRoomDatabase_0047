@@ -40,6 +40,12 @@ object PenyediaViewModel {
                 klinikApp().containerApp.repositoryJadwal
             )
         }
+        initializer {
+            UpdateJadwalViewModel(
+                createSavedStateHandle(),
+                krsApp().containerApp.repositoryJadwal
+            )
+        }
     }
 }
 
