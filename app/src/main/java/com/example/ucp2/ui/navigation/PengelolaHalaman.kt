@@ -98,6 +98,24 @@ fun PengelolaHalaman(
                 )
             }
         }
+        composable(
+            AlamatNavigasi.DestinasiUpdateJadwal.routeWithArgs,
+            arguments = listOf(
+                navArgument(AlamatNavigasi.DestinasiUpdateJadwal.ID) {
+                    type = NavType.StringType
+                }
+            )
+        ) {
+            UpdateJadwalView(
+                onBack = {
+                    navController.popBackStack()
+                },
+                onNavigate = {
+                    navController.popBackStack()
+                },
+                modifier = modifier
+            )
+        }
     }
 }
 
