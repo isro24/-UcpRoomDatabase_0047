@@ -7,6 +7,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.compose.composable
 import com.example.ucp2.ui.view.dokter.DestinasiInsert
+import com.example.ucp2.ui.view.dokter.HomeDokterView
 import com.example.ucp2.ui.view.dokter.InsertDokterView
 
 @Composable
@@ -16,8 +17,18 @@ fun PengelolaHalaman(
 ) {
     NavHost(
         navController = navController,
-        startDestination = DestinasiInsert.route
+        startDestination = AlamatNavigasi.DestinasiHome.route
     ) {
+        composable(route = AlamatNavigasi.DestinasiHome.route
+        ){
+            HomeDokterView(
+                onDetailClick = {},
+                onAddDokter = {
+                    navController.navigate(DestinasiInsert.route)
+                },
+                modifier = modifier
+            )
+        }
         composable(route = DestinasiInsert.route) {
             InsertDokterView(
                 onBack = {
