@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -34,14 +35,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.R
 import com.example.ucp2.data.entity.Jadwal
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
-import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 
 @Composable
 fun HomeJadwalView(
     viewModel: HomeJadwalViewModel = viewModel(factory = PenyediaViewModel.Factory),
     onAddJadwal: () -> Unit,
-    onKembali:() -> Unit,
+    onKembali: () -> Unit,
     onDetailClick: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -117,7 +117,7 @@ fun BodySection(
     viewModel: HomeJadwalViewModel,
     onAddJadwal: () -> Unit,
     onKembali: () -> Unit,
-    onDetailClick: (String) -> Unit
+    onDetailClick: (String) -> Unit = {}
 ) {
     val homeUiState by viewModel.homeUiState.collectAsState()
 
@@ -161,7 +161,6 @@ fun BodySection(
                     )
                 }
             }
-
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -204,6 +203,7 @@ fun BodySection(
         )
     }
 }
+
 @Composable
 fun ListJadwal(
     listJadwal: List<Jadwal>,
@@ -219,52 +219,63 @@ fun ListJadwal(
         items(
             items = listJadwal,
             itemContent = { jdwl ->
-                Card(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .clip(RoundedCornerShape(12.dp))
-                        .background(Color.White)
-                        .padding(8.dp),
-                    elevation = CardDefaults.cardElevation(4.dp)
-                ) {
-                    Row(
-                        modifier = Modifier.padding(16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Image(
-                            painter = painterResource(id = R.drawable.chat),
-                            contentDescription = "Dokter Icon",
-                            modifier = Modifier
-                                .size(60.dp)
-                                .clip(CircleShape)
-                                .background(Color(0xFF0E91F3))
-                                .padding(8.dp)
-                        )
-                        Spacer(modifier = Modifier.width(12.dp))
-                        Column(
-                            verticalArrangement = Arrangement.spacedBy(4.dp)
-                        ) {
-                            Text(
-                                text = jdwl.namaPasien,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-                            Text(
-                                text = jdwl.tanggalKonsultasi,
-                                fontSize = 14.sp,
-                                color = Color.Gray
-                            )
-                            Text(
-                                text = jdwl.noHp,
-                                fontSize = 12.sp,
-                                color = Color.Gray
-                            )
-                        }
-                    }
-                }
+                CardJadwal(
+                    jadwal = jdwl,
+                    onClick = { onClick(jdwl.id) }
+                )
             }
         )
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun CardJadwal(
+    jadwal: Jadwal,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit = {}
+) {
+    Card(
+        onClick = onClick,
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(8.dp)
+    ) {
+        Row(
+            modifier = Modifier.padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.chat),
+                contentDescription = "Dokter Icon",
+                modifier = Modifier
+                    .size(60.dp)
+                    .clip(CircleShape)
+                    .background(Color(0xFF0E91F3))
+                    .padding(8.dp)
+            )
+            Spacer(modifier = Modifier.width(12.dp))
+            Column(
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = jadwal.namaPasien,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = Color.Black
+                )
+                Text(
+                    text = jadwal.tanggalKonsultasi,
+                    fontSize = 14.sp,
+                    color = Color.Gray
+                )
+                Text(
+                    text = jadwal.noHp,
+                    fontSize = 12.sp,
+                    color = Color.Gray
+                )
+            }
+        }
     }
 }
 

@@ -12,6 +12,7 @@ import com.example.ucp2.ui.view.dokter.DestinasiInsertDokter
 import com.example.ucp2.ui.view.dokter.HomeDokterView
 import com.example.ucp2.ui.view.dokter.InsertDokterView
 import com.example.ucp2.ui.view.jadwal.DestinasiInsertJadwal
+import com.example.ucp2.ui.view.jadwal.DetailJadwalView
 import com.example.ucp2.ui.view.jadwal.HomeJadwalView
 import com.example.ucp2.ui.view.jadwal.InsertJadwalView
 
@@ -62,7 +63,10 @@ fun PengelolaHalaman(
         composable(route = AlamatNavigasi.DestinasiHomeJadwal.route
         ){
             HomeJadwalView(
-                onDetailClick = {},
+                onDetailClick = {id ->
+                    navController.navigate("${AlamatNavigasi.DestinasiDetailJadwal.route}/$id")
+                    println("PengelolaHalaman: id = $id")
+                },
                 onAddJadwal = {
                     navController.navigate(DestinasiInsertJadwal.route)
                 },
@@ -86,9 +90,7 @@ fun PengelolaHalaman(
                     onBack = {
                         navController.popBackStack()
                     },
-                    onEditClick = {
-                        navController.navigate("${AlamatNavigasi.DestinasiUpdateJadwal.route}/$it")
-                    },
+                    onEditClick = {},
                     modifier = modifier,
                     onDeleteClick = {
                         navController.popBackStack()
