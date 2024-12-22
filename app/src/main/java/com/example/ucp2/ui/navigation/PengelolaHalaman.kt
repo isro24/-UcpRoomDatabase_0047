@@ -15,6 +15,7 @@ import com.example.ucp2.ui.view.jadwal.DestinasiInsertJadwal
 import com.example.ucp2.ui.view.jadwal.DetailJadwalView
 import com.example.ucp2.ui.view.jadwal.HomeJadwalView
 import com.example.ucp2.ui.view.jadwal.InsertJadwalView
+import com.example.ucp2.ui.view.jadwal.UpdateJadwalView
 
 @Composable
 fun PengelolaHalaman(
@@ -90,7 +91,9 @@ fun PengelolaHalaman(
                     onBack = {
                         navController.popBackStack()
                     },
-                    onEditClick = {},
+                    onEditClick = {
+                        navController.navigate("${AlamatNavigasi.DestinasiUpdateJadwal.route}/$it")
+                    },
                     modifier = modifier,
                     onDeleteClick = {
                         navController.popBackStack()

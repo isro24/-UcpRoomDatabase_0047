@@ -18,7 +18,7 @@ class UpdateJadwalViewModel(
     private val repositoryJadwal: RepositoryJadwal
 ) : ViewModel() {
 
-    var updateUIState by mutableStateOf(JadwalUIState)
+    var updateUIState by mutableStateOf(JadwalUIState())
         private set
 
     private val _id: String = checkNotNull(savedStateHandle[AlamatNavigasi.DestinasiUpdateJadwal.ID])
@@ -60,25 +60,25 @@ class UpdateJadwalViewModel(
                 try {
                     repositoryJadwal.updateJdwl(currentEvent.toJadwalEntity())
                     updateUIState = updateUIState.copy(
-                        snackBarMassage = "Data berhasil diupdate",
+                        snackBarMessage = "Data berhasil diupdate",
                         jadwalEvent = JadwalEvent(),
                         isEntryValid = FormErrorState()
                     )
                 } catch (e: Exception) {
                     updateUIState = updateUIState.copy(
-                        snackBarMassage = "Data gagal diupdate"
+                        snackBarMessage = "Data gagal diupdate"
                     )
                 }
             }
         } else {
             updateUIState = updateUIState.copy(
-                snackBarMassage = "Data gagal diupdate"
+                snackBarMessage = "Data gagal diupdate"
             )
         }
     }
 
     fun resetSnackBarMessage() {
-        updateUIState = updateUIState.copy(snackBarMassage = null)
+        updateUIState = updateUIState.copy(snackBarMessage = null)
     }
 
     fun Jadwal.toUiStateJdwl(): JadwalUIState = JadwalUIState(
