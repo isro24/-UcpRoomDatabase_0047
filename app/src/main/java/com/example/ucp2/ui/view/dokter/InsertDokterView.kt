@@ -37,7 +37,7 @@ import com.example.ucp2.ui.viewmodel.dokter.DokterEvent
 import com.example.ucp2.ui.viewmodel.dokter.DokterUIState
 import com.example.ucp2.ui.viewmodel.dokter.FormErrorState
 
-object DestinasiInsert : AlamatNavigasi {
+object DestinasiInsertDokter : AlamatNavigasi {
     override val route: String = "insert_dktr"
 }
 
