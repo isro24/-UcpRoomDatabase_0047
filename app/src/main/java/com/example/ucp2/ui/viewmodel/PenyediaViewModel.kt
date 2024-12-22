@@ -43,7 +43,7 @@ object PenyediaViewModel {
         initializer {
             UpdateJadwalViewModel(
                 createSavedStateHandle(),
-                krsApp().containerApp.repositoryJadwal
+                klinikApp().containerApp.repositoryJadwal
             )
         }
     }
