@@ -14,4 +14,9 @@ interface AlamatNavigasi {
         const val ID = "id"
         val routeWithArgs = "$route/{$ID}"
     }
+    object DestinasiUpdateJadwal : AlamatNavigasi {
+        override val route = "update"
+        const val ID = "id"
+        val routeWithArgs = "$route/{$ID}"
+    }
 }
