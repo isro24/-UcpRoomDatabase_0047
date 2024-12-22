@@ -11,6 +11,7 @@ import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.DetailJadwalViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.HomeJadwalViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.JadwalViewModel
+import com.example.ucp2.ui.viewmodel.jadwal.UpdateJadwalViewModel
 
 object PenyediaViewModel {
     val Factory = viewModelFactory {
