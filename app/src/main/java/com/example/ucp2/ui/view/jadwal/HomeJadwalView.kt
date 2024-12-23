@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -19,8 +20,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -72,14 +72,16 @@ fun HeaderSection() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
+            .clip(RoundedCornerShape(bottomStart = 50.dp, bottomEnd = 50.dp))
             .background(color = Color(0xFF0E91F3))
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+                .fillMaxWidth()
                 .padding(bottom = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.size(30.dp))
+            Spacer(modifier = Modifier.size(40.dp))
             Row(
                 modifier = Modifier
                     .fillMaxWidth(),
@@ -87,7 +89,7 @@ fun HeaderSection() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(
-                    modifier = Modifier.padding(start = 25.dp, top = 15.dp)
+                    modifier = Modifier.padding(start = 25.dp)
                 ) {
                     Text(
                         text = "Welcome, ",
@@ -103,14 +105,14 @@ fun HeaderSection() {
                     )
                 }
                 Box(
-                    modifier = Modifier.padding(top = 25.dp,end = 35.dp),
+                    modifier = Modifier.padding(end = 35.dp, bottom = 15.dp),
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Image(
-                        painter = painterResource(id = R.drawable.logo),
+                        painter = painterResource(id = R.drawable.personprof),
                         contentDescription = "",
                         modifier = Modifier
-                            .size(80.dp)
+                            .size(60.dp)
                             .clip(CircleShape)
                     )
                 }
@@ -120,6 +122,7 @@ fun HeaderSection() {
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BodySection(
     viewModel: HomeJadwalViewModel,
@@ -170,46 +173,115 @@ fun BodySection(
                     )
                 }
             }
+
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .background(Color(0xFFF0F0F0), shape = RoundedCornerShape(8.dp))
-                    .padding(horizontal = 16.dp, vertical = 12.dp)
+                    .padding(horizontal = 16.dp, vertical = 12.dp),
+                contentAlignment = Alignment.CenterStart
             ) {
-                Text(
-                    text = "Cari dokter",
-                    fontSize = 14.sp,
-                    color = Color.Gray
-                )
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search Icon",
+                        modifier = Modifier
+                            .size(30.dp)
+                            .padding(end = 8.dp),
+                        tint = Color.Gray
+                    )
+                    Text(
+                        text = "Cari dokter",
+                        fontSize = 14.sp,
+                        color = Color.Gray
+                    )
+                }
+            }
+        }
+    }
+
+    Column(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 50.dp, vertical = 8.dp)
+            .offset(y = (-100).dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Kategori",
+            fontSize = 16.sp,
+            color = Color.Black,
+            fontWeight = FontWeight.Medium,
+            modifier = Modifier.padding(bottom = 8.dp)
+        )
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            Card(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .padding(end = 8.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF0D61C4)
+                ),
+                onClick = onAddJadwal
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp, horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+                ) {
+                    Icon(
+                        painter = painterResource(id = R.drawable.jadwalmedik),
+                        contentDescription = "Icon Jadwal",
+                        modifier = Modifier.size(24.dp),
+                        tint = Color.Unspecified
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Tambah Jadwal",
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
+                }
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+            Card(
+                modifier = Modifier
+                    .weight(0.5f)
+                    .padding(start = 8.dp)
+                    .clip(RoundedCornerShape(12.dp)),
+                colors = CardDefaults.cardColors(
+                    containerColor = Color(0xFF0D61C4)
+                ),
+                onClick = onKembali
             ) {
-                Button(
-                    onClick = onAddJadwal,
+                Column(
                     modifier = Modifier
-                        .weight(0.5f)
-                        .padding(end = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF0D61C4),
-                        contentColor = Color.White
-                    )
+                        .fillMaxWidth()
+                        .padding(vertical = 16.dp, horizontal = 16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
                 ) {
-                    Text("Tambah Jadwal")
-                }
-                Button(
-                    onClick = onKembali,
-                    modifier = Modifier
-                        .weight(0.5f)
-                        .padding(start = 8.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = Color(0xFF0D61C4),
-                        contentColor = Color.White
+                    Icon(
+                        painter = painterResource(id = R.drawable.back),
+                        contentDescription = "Icon Kembali",
+                        modifier = Modifier.size(24.dp),
+                        tint = Color.Unspecified
                     )
-                ) {
-                    Text("Kembali")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = "Kembali",
+                        fontSize = 14.sp,
+                        color = Color.White
+                    )
                 }
             }
         }
