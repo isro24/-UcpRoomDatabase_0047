@@ -169,7 +169,11 @@ fun BodySection(
                     onClick = onAddDokter,
                     modifier = Modifier
                         .weight(0.5f)
-                        .padding(end = 8.dp)
+                        .padding(end = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF0D61C4),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text("Tambah Dokter")
                 }
@@ -177,7 +181,11 @@ fun BodySection(
                     onClick = { onJadwalView("homejadwal") },
                     modifier = Modifier
                         .weight(0.5f)
-                        .padding(start = 8.dp)
+                        .padding(start = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF0D61C4),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text("Lihat Jadwal")
                 }

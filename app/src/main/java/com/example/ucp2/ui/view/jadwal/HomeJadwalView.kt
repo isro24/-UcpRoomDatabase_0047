@@ -19,6 +19,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Call
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -187,7 +188,11 @@ fun BodySection(
                     onClick = onAddJadwal,
                     modifier = Modifier
                         .weight(0.5f)
-                        .padding(end = 8.dp)
+                        .padding(end = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF0D61C4),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text("Tambah Jadwal")
                 }
@@ -195,7 +200,11 @@ fun BodySection(
                     onClick = onKembali,
                     modifier = Modifier
                         .weight(0.5f)
-                        .padding(start = 8.dp)
+                        .padding(start = 8.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF0D61C4),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text("Kembali")
                 }
