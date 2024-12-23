@@ -22,6 +22,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -40,6 +41,7 @@ import com.example.ucp2.ui.viewmodel.jadwal.JadwalUIState
 import com.example.ucp2.ui.viewmodel.jadwal.JadwalViewModel
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.FormErrorState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.launch
 
 object DestinasiInsertJadwal : AlamatNavigasi {
@@ -56,6 +58,15 @@ fun InsertJadwalView(
     val uiState = viewModel.uistate
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.White)
+
+    DisposableEffect(Unit) {
+        onDispose {
+            systemUiController.setStatusBarColor(Color.Transparent)
+        }
+    }
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->

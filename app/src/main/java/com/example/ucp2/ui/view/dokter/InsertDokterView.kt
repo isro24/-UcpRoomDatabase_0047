@@ -22,6 +22,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -45,6 +46,7 @@ import com.example.ucp2.ui.costumwidget.TopAppBar
 import com.example.ucp2.ui.viewmodel.dokter.DokterEvent
 import com.example.ucp2.ui.viewmodel.dokter.DokterUIState
 import com.example.ucp2.ui.viewmodel.dokter.FormErrorState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 object DestinasiInsertDokter : AlamatNavigasi {
     override val route: String = "insert_dktr"
@@ -60,6 +62,15 @@ fun InsertDokterView(
     val uiState = viewModel.uistate
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.White)
+
+    DisposableEffect(Unit) {
+        onDispose {
+            systemUiController.setStatusBarColor(Color.Transparent)
+        }
+    }
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->

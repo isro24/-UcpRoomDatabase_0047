@@ -9,6 +9,7 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -19,6 +20,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.costumwidget.TopAppBar
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.UpdateJadwalViewModel
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,6 +36,15 @@ fun UpdateJadwalView(
     val uiState = viewModel.updateUIState
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.White)
+
+    DisposableEffect(Unit) {
+        onDispose {
+            systemUiController.setStatusBarColor(Color.Transparent)
+        }
+    }
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->

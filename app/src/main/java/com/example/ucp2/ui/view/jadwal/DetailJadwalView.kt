@@ -28,6 +28,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -47,6 +48,7 @@ import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.DetailJadwalViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.DetailUiState
 import com.example.ucp2.ui.viewmodel.jadwal.toJadwalEntity
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @Composable
 fun DetailJadwalView(
@@ -56,6 +58,14 @@ fun DetailJadwalView(
     onEditClick: (String) -> Unit = { },
     onDeleteClick: () -> Unit = { }
 ){
+    val systemUiController = rememberSystemUiController()
+    systemUiController.setStatusBarColor(Color.White)
+
+    DisposableEffect(Unit) {
+        onDispose {
+            systemUiController.setStatusBarColor(Color.Transparent)
+        }
+    }
     Scaffold (
         topBar = {
             TopAppBar (

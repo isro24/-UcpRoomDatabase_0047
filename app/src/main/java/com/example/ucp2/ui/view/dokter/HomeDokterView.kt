@@ -214,14 +214,14 @@ fun BodySection(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp, horizontal = 16.dp),
+                        .padding(vertical = 8.dp, horizontal = 8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.doktermedik),
                         contentDescription = "Icon Dokter",
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(44.dp),
                         tint = Color.Unspecified
                     )
                     Spacer(modifier = Modifier.height(8.dp))
@@ -246,14 +246,14 @@ fun BodySection(
                 Column(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 16.dp, horizontal = 16.dp),
+                        .padding(vertical = 8.dp, horizontal = 8.dp),
                     horizontalAlignment = Alignment.CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.jadwalmedik),
                         contentDescription = "Icon Jadwal",
-                        modifier = Modifier.size(24.dp),
+                        modifier = Modifier.size(44.dp),
                         tint = Color.Unspecified
                     )
                     Spacer(modifier = Modifier.height(8.dp))
