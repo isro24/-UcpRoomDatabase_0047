@@ -4,19 +4,10 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "jadwal",
-    foreignKeys = [ForeignKey(
-        entity = Dokter::class,
-        parentColumns = ["id"],
-        childColumns = ["id"],
-        onUpdate = ForeignKey.CASCADE,
-        onDelete = ForeignKey.CASCADE
-
-    )])
-
+@Entity(tableName = "jadwal")
 data class Jadwal(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     val namaDokter: String,
     val namaPasien: String,
     val noHp: String,

@@ -221,7 +221,7 @@ fun ListJadwal(
             itemContent = { jdwl ->
                 CardJadwal(
                     jadwal = jdwl,
-                    onClick = { onClick(jdwl.id) }
+                    onClick = { onClick(jdwl.id.toString()) }
                 )
             }
         )

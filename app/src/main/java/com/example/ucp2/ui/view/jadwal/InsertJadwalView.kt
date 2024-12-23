@@ -17,11 +17,8 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -60,22 +57,24 @@ fun InsertJadwalView(
     }
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color.White),
-        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(0.dp)
-        ) {
+        topBar = {
             TopAppBar(
                 onBack = onBack,
                 showBackButton = true,
                 judul = "Tambah Jadwal"
             )
-
+        },
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
+    ) { innerpadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerpadding)
+                .padding(0.dp)
+        ) {
             Spacer(modifier = Modifier.height(8.dp))
             InsertBodyJadwal(
                 onValueChange = { updateEvent ->
@@ -135,15 +134,13 @@ fun FormJadwal(
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
-        OutlinedTextField(
-            modifier = Modifier.fillMaxWidth(),
-            value = jadwalEvent.namaDokter,
-            onValueChange = {
-                onValueChange(jadwalEvent.copy(namaDokter = it))
-            },
-            label = { Text("Nama Dokter") },
-            isError = errorState.namaDokter != null,
-            placeholder = { Text("Masukkan nama dokter") },
+        DynamicSelectedFieldDokter(
+            selectedValue = jadwalEvent.namaDokter,
+            options = NamaDokter.options(),
+            label = "Nama Dokter",
+            onValueChangedEvent = { selectedDokter ->
+                onValueChange(jadwalEvent.copy(namaDokter = selectedDokter))
+            }
         )
         Text(
             text = errorState.namaDokter ?: "",

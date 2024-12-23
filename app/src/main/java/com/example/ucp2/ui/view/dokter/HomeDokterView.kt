@@ -242,7 +242,12 @@ fun ListDokter(
                                 color = Color.Gray
                             )
                             Text(
-                                text = dktr.id,
+                                text = dktr.klinik,
+                                fontSize = 12.sp,
+                                color = Color.Gray
+                            )
+                            Text(
+                                text = dktr.jamKerja,
                                 fontSize = 12.sp,
                                 color = Color.Gray
                             )

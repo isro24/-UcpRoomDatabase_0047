@@ -66,10 +66,11 @@ fun InsertDokterView(
             .fillMaxSize()
             .background(Color.White),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) }
-    ) { padding ->
+    ) { innerpadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
+                .padding(innerpadding)
                 .padding(0.dp)
         ) {
             TopAppBar(

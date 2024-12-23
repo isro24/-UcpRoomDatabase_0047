@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface JadwalDAO {
     @Insert
-    suspend fun insertJadwal(jadwal: Jadwal)
+    suspend fun insertJadwal(jadwal: Jadwal): Long
 
     @Query("SELECT * FROM jadwal ORDER BY namaDokter ASC")
     fun getAllJadwal(): Flow<List<Jadwal>>

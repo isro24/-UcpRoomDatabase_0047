@@ -66,12 +66,12 @@ class DokterViewModel (private val repositoryDokter: RepositoryDokter) : ViewMod
 
 data class DokterUIState(
     val dokterEvent: DokterEvent = DokterEvent(),
-    val dokterList: List<Dokter> = emptyList(),
     val isEntryValid: FormErrorState = FormErrorState(),
     val snackBarMessage: String? = null,
 )
 
 data class DokterEvent(
+    val id: Int  = 0,
     val nama: String = "",
     val spesialis: String = "",
     val klinik: String = "",
@@ -80,7 +80,7 @@ data class DokterEvent(
 )
 
 fun DokterEvent.toDokterEntity(): Dokter = Dokter(
-    id = "",
+    id = id,
     nama = nama,
     spesialis = spesialis,
     klinik = klinik,

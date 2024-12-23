@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DokterDAO {
     @Insert
-    suspend fun insertDokter(dokter: Dokter)
+    suspend fun insertDokter(dokter: Dokter): Long
 
     @Query("SELECT * FROM dokter ORDER BY nama ASC")
     fun getAllDokter(): Flow<List<Dokter>>

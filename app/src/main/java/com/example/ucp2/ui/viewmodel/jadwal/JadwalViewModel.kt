@@ -67,7 +67,6 @@ class JadwalViewModel(private val repositoryJadwal: RepositoryJadwal) : ViewMode
 
 data class JadwalUIState(
     val jadwalEvent: JadwalEvent = JadwalEvent(),
-    val jadwalList: List<Jadwal> = emptyList(),
     val isEntryValid: FormErrorState = FormErrorState(),
     val snackBarMessage: String? = null,
 )
@@ -82,7 +81,7 @@ data class JadwalEvent(
 )
 
 fun JadwalEvent.toJadwalEntity(): Jadwal = Jadwal(
-    id = id,
+    id = id.toIntOrNull() ?: 0,
     namaDokter = namaDokter,
     namaPasien = namaPasien,
     noHp = noHp,
@@ -91,6 +90,7 @@ fun JadwalEvent.toJadwalEntity(): Jadwal = Jadwal(
 )
 
 data class FormErrorState(
+    val id: String? = null,
     val namaDokter: String? = null,
     val namaPasien: String? = null,
     val noHp: String? = null,
@@ -98,7 +98,8 @@ data class FormErrorState(
     val status: String? = null,
 ) {
     fun isValid(): Boolean {
-        return namaDokter == null
+        return id == null
+                && namaDokter == null
                 && namaPasien == null
                 && noHp == null
                 && tanggalKonsultasi == null
