@@ -2,12 +2,19 @@ package com.example.ucp2.ui.view.jadwal
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -29,6 +36,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -104,7 +112,7 @@ fun BodyDetailJadwal(
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(16.dp)
+                    .padding(26.dp)
 
             ) {
                 ItemDetailJadwal(
@@ -170,15 +178,15 @@ fun ItemDetailJadwal(
             modifier = Modifier.padding(20.dp)
         ){
             Spacer(modifier = Modifier.padding(4.dp))
-            ComponentDetailJadwal(judul = "NamaDokter", isinya = jadwal.namaDokter)
+            ComponentDetailJadwal(judul = "Nama Dokter", isinya = jadwal.namaDokter, icon = Icons.Default.Person)
             Spacer(modifier = Modifier.padding(4.dp))
-            ComponentDetailJadwal(judul = "NamaPasien", isinya = jadwal.namaPasien)
+            ComponentDetailJadwal(judul = "NamaPasien", isinya = jadwal.namaPasien, icon = Icons.Default.Person)
             Spacer(modifier = Modifier.padding(4.dp))
-            ComponentDetailJadwal(judul = "NoHp", isinya = jadwal.noHp)
+            ComponentDetailJadwal(judul = "NoHp", isinya = jadwal.noHp, icon = Icons.Default.Call)
             Spacer(modifier = Modifier.padding(4.dp))
-            ComponentDetailJadwal(judul = "TanggalKonsultasi", isinya = jadwal.tanggalKonsultasi)
+            ComponentDetailJadwal(judul = "TanggalKonsultasi", isinya = jadwal.tanggalKonsultasi, icon = Icons.Default.DateRange)
             Spacer(modifier = Modifier.padding(4.dp))
-            ComponentDetailJadwal(judul = "Status", isinya = jadwal.status)
+            ComponentDetailJadwal(judul = "Status", isinya = jadwal.status, icon = Icons.Default.Info)
             Spacer(modifier = Modifier.padding(4.dp))
 
         }
@@ -189,26 +197,38 @@ fun ItemDetailJadwal(
 fun ComponentDetailJadwal(
     modifier: Modifier = Modifier,
     judul: String,
-    isinya: String
-){
-    Column (
-        modifier = modifier.fillMaxWidth(),
-
-        horizontalAlignment = Alignment.Start
-    ){
-        Text(
-            text = "$judul :",
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold,
-            color = Color.Gray
+    isinya: String,
+    icon: ImageVector
+) {
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .padding(vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Icon(
+            imageVector = icon,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.size(24.dp)
         )
-        Text(
-            text = isinya,
-            fontSize = 20.sp,
-            fontWeight = FontWeight.Bold
-        )
+        Spacer(modifier = Modifier.width(16.dp))
+        Column {
+            Text(
+                text = "$judul:",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = Color.Gray
+            )
+            Text(
+                text = isinya,
+                fontSize = 18.sp,
+                fontWeight = FontWeight.Bold
+            )
+        }
     }
 }
+
 
 @Composable
 private fun DeleteConfirmationDialog(
