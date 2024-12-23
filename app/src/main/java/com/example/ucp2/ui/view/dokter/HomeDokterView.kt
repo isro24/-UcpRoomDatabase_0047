@@ -166,13 +166,17 @@ fun BodySection(
             ) {
                 Button(
                     onClick = onAddDokter,
-                    modifier = Modifier.weight(0.5f).padding(end = 8.dp)
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(end = 8.dp)
                 ) {
                     Text("Tambah Dokter")
                 }
                 Button(
                     onClick = { onJadwalView("homejadwal") },
-                    modifier = Modifier.weight(0.5f).padding(start = 8.dp)
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(start = 8.dp)
                 ) {
                     Text("Lihat Jadwal")
                 }
@@ -218,39 +222,75 @@ fun ListDokter(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.chat),
+                            painter = painterResource(id = R.drawable.logodokter),
                             contentDescription = "Dokter Icon",
                             modifier = Modifier
-                                .size(60.dp)
+                                .size(80.dp)
                                 .clip(CircleShape)
-                                .background(Color(0xFF0E91F3))
                                 .padding(8.dp)
                         )
                         Spacer(modifier = Modifier.width(12.dp))
                         Column(
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
-                            Text(
-                                text = dktr.nama,
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp,
-                                color = Color.Black
-                            )
-                            Text(
-                                text = dktr.spesialis,
-                                fontSize = 14.sp,
-                                color = Color.Gray
-                            )
-                            Text(
-                                text = dktr.klinik,
-                                fontSize = 12.sp,
-                                color = Color.Gray
-                            )
+                            Row {
+                                Column {
+                                    Row {
+                                        Text(
+                                            text = dktr.nama,
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 16.sp,
+                                            color = Color.Black
+                                        )
+                                    }
+                                    Row {
+                                        Text(
+                                            text = dktr.spesialis,
+                                            fontSize = 14.sp,
+                                            color = Color.Gray
+                                        )
+                                    }
+                                    Row {
+                                        Icon(
+                                            painter = painterResource(R.drawable.klinik),
+                                            contentDescription = "Klinik",
+                                            modifier = Modifier.size(20.dp)
+                                                .padding(top = 6.dp),
+                                            tint = MaterialTheme.colorScheme.secondary
+                                        )
+                                        Spacer(modifier = Modifier.width(10.dp))
+                                        Text(
+                                            text = dktr.klinik,
+                                            fontSize = 12.sp,
+                                            color = Color.Gray,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+                                    Row {
+                                        Icon(
+                                            painter = painterResource(R.drawable.jam),
+                                            contentDescription = "Jam Kerja",
+                                            modifier = Modifier.size(20.dp)
+                                                .padding(top = 6.dp),
+                                            tint = MaterialTheme.colorScheme.secondary
+                                        )
+                                        Spacer(modifier = Modifier.width(10.dp))
+                                        Text(
+                                            text = dktr.jamKerja,
+                                            fontSize = 12.sp,
+                                            color = Color.Gray,
+                                            modifier = Modifier.padding(top = 4.dp)
+                                        )
+                                    }
+                                }
+                            }
+
+                            /*
                             Text(
                                 text = dktr.jamKerja,
                                 fontSize = 12.sp,
                                 color = Color.Gray
-                            )
+                            )*/
                         }
                     }
                 }
