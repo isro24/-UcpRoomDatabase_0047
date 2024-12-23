@@ -21,51 +21,52 @@ import androidx.compose.ui.Modifier
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DynamicSelectedField(
+fun DropDownNamaDokter(
     selectedValue: String,
     options: List<String>,
     label: String,
     onValueChangedEvent: (String) -> Unit,
     modifier: Modifier = Modifier
-){
-    var expended by remember {
+) {
+    var expanded by remember {
         mutableStateOf(false)
     }
 
     ExposedDropdownMenuBox(
-        expanded = expended,
-        onExpandedChange = { expended = !expended },
-        modifier = Modifier
-    )
-    {
+        expanded = expanded,
+        onExpandedChange = {expanded = !expanded},
+        modifier = modifier
+    ) {
         OutlinedTextField(
             readOnly = true,
             value = selectedValue,
             onValueChange = {},
             label = { Text(text = label) },
+            trailingIcon = {
+                ExposedDropdownMenuDefaults.TrailingIcon(
+                    expanded = expanded
+                )
+            },
             leadingIcon = {
                 Icon(
                     Icons.Filled.Person,
                     contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary
+                    tint = MaterialTheme.colorScheme.secondary
                 )
             },
-            trailingIcon = {
-                ExposedDropdownMenuDefaults.TrailingIcon(expanded = expended)
-            },
+            placeholder = { Text("Pilih Dokter") },
             colors = OutlinedTextFieldDefaults.colors(),
             modifier = Modifier
                 .menuAnchor()
                 .fillMaxWidth()
         )
-
-        ExposedDropdownMenu(expanded = expended,
-            onDismissRequest = { expended = false }) {
-            options.forEach { option: String ->
+        ExposedDropdownMenu(expanded = expanded,
+            onDismissRequest = { expanded = false }) {
+            options.forEach() { option:String ->
                 DropdownMenuItem(
                     text = { Text(text = option) },
                     onClick = {
-                        expended = false
+                        expanded = false
                         onValueChangedEvent(option)
                     }
                 )
@@ -73,4 +74,3 @@ fun DynamicSelectedField(
         }
     }
 }
-

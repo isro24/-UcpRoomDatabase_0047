@@ -8,8 +8,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHost
@@ -21,10 +27,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.R
 import com.example.ucp2.data.model.NamaDokter
-import com.example.ucp2.ui.costumwidget.DynamicSelectedFieldDokter
+import com.example.ucp2.ui.costumwidget.DropDownNamaDokter
 import com.example.ucp2.ui.costumwidget.TopAppBar
 import com.example.ucp2.ui.navigation.AlamatNavigasi
 import com.example.ucp2.ui.viewmodel.jadwal.JadwalEvent
@@ -75,7 +83,7 @@ fun InsertJadwalView(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(innerpadding)
-                .padding(0.dp)
+                .padding(16.dp)
         ) {
             Spacer(modifier = Modifier.height(8.dp))
             InsertBodyJadwal(
@@ -136,7 +144,7 @@ fun FormJadwal(
     Column(
         modifier = modifier.fillMaxWidth()
     ) {
-        DynamicSelectedFieldDokter(
+        DropDownNamaDokter(
             selectedValue = jadwalEvent.namaDokter,
             options = NamaDokter.options(),
             label = "Nama Dokter",
@@ -158,6 +166,12 @@ fun FormJadwal(
             label = { Text("Nama Pasien") },
             isError = errorState.namaPasien != null,
             placeholder = { Text("Masukkan nama pasien") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Person,
+                    contentDescription = "Nama Pasien",
+                )
+            }
         )
         Text(
             text = errorState.namaPasien ?: "",
@@ -173,6 +187,12 @@ fun FormJadwal(
             label = { Text("No HP") },
             isError = errorState.noHp != null,
             placeholder = { Text("Masukkan nomor HP") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.Call,
+                    contentDescription = "Nomor Hp",
+                )
+            }
         )
         Text(
             text = errorState.noHp ?: "",
@@ -188,6 +208,12 @@ fun FormJadwal(
             label = { Text("Tanggal Konsultasi") },
             isError = errorState.tanggalKonsultasi != null,
             placeholder = { Text("Masukkan tanggal konsultasi") },
+            leadingIcon = {
+                Icon(
+                    imageVector = Icons.Default.DateRange,
+                    contentDescription = "Tanggal Konsultasi",
+                )
+            }
         )
         Text(
             text = errorState.tanggalKonsultasi ?: "",
@@ -202,7 +228,15 @@ fun FormJadwal(
             },
             label = { Text("Status") },
             isError = errorState.status != null,
-            placeholder = { Text("Masukkan status jadwal") },
+            placeholder = { Text("Masukkan status penanganan") },
+            leadingIcon = {
+                Icon(
+                    painter = painterResource(R.drawable.status),
+                    contentDescription = "Status",
+                    modifier = Modifier
+                        .size(25.dp)
+                )
+            }
         )
         Text(
             text = errorState.status ?: "",

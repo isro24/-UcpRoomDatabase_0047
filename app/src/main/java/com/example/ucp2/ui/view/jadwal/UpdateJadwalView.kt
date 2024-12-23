@@ -1,5 +1,6 @@
 package com.example.ucp2.ui.view.jadwal
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -12,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.costumwidget.TopAppBar
@@ -46,7 +48,9 @@ fun UpdateJadwalView(
     }
 
     Scaffold(
-        modifier = modifier,
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color.White),
         snackbarHost = { SnackbarHost(hostState = snackbarHostState) },
         topBar = {
             TopAppBar(
@@ -54,12 +58,12 @@ fun UpdateJadwalView(
                 judul = "Edit Jadwal",
                 showBackButton = true
             )
-        }
-    ) { padding ->
+        },
+    ) { innerpadding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(padding)
+                .padding(innerpadding)
                 .padding(16.dp)
         ) {
             InsertBodyJadwal(

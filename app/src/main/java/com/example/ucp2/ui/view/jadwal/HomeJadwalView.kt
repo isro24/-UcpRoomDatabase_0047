@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -74,7 +75,8 @@ fun HeaderSection() {
             .background(color = Color(0xFF0E91F3))
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(bottom = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.size(30.dp))
@@ -85,7 +87,7 @@ fun HeaderSection() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(
-                    modifier = Modifier.padding(start = 15.dp)
+                    modifier = Modifier.padding(start = 25.dp, top = 15.dp)
                 ) {
                     Text(
                         text = "Welcome, ",
@@ -101,7 +103,7 @@ fun HeaderSection() {
                     )
                 }
                 Box(
-                    modifier = Modifier.padding(end = 15.dp),
+                    modifier = Modifier.padding(top = 25.dp,end = 35.dp),
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Image(
@@ -130,7 +132,8 @@ fun BodySection(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .offset(y = (-90).dp),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
@@ -231,7 +234,8 @@ fun ListJadwal(
     LazyColumn(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .offset(y = (-100).dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(
@@ -258,7 +262,7 @@ fun CardJadwal(
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
-    ) {
+        ) {
         Row(
             modifier = Modifier.padding(16.dp),
             verticalAlignment = Alignment.CenterVertically
@@ -285,7 +289,7 @@ fun CardJadwal(
                         )
                         Text(
                             text = jadwal.status,
-                            fontSize = 12.sp,
+                            fontSize = 14.sp,
                             color = Color.Gray
                         )
                         Row {
@@ -294,12 +298,12 @@ fun CardJadwal(
                                 contentDescription = "Tanggal Konsultasi",
                                 modifier = Modifier
                                     .size(20.dp)
-                                    .padding(top = 6.dp),
+                                    .padding(top = 6.dp, end = 8.dp),
                                 tint = MaterialTheme.colorScheme.secondary
                             )
                             Text(
                                 text = jadwal.tanggalKonsultasi,
-                                fontSize = 14.sp,
+                                fontSize = 12.sp,
                                 color = Color.Gray,
                                 modifier = Modifier.padding(top = 4.dp)
                             )
@@ -310,7 +314,7 @@ fun CardJadwal(
                                 contentDescription = "No Hp",
                                 modifier = Modifier
                                     .size(20.dp)
-                                    .padding(top = 6.dp),
+                                    .padding(top = 6.dp, end = 8.dp),
                                 tint = MaterialTheme.colorScheme.secondary
                             )
                             Text(

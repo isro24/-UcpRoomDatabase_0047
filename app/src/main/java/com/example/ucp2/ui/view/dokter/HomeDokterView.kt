@@ -55,7 +55,8 @@ fun HeaderSection() {
             .background(color = Color(0xFF0E91F3))
     ) {
         Column(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier.fillMaxWidth()
+                .padding(bottom = 50.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Spacer(modifier = Modifier.size(30.dp))
@@ -66,7 +67,7 @@ fun HeaderSection() {
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Column(
-                    modifier = Modifier.padding(start = 15.dp)
+                    modifier = Modifier.padding(start = 25.dp, top = 15.dp)
                 ) {
                     Text(
                         text = "Welcome, ",
@@ -82,7 +83,7 @@ fun HeaderSection() {
                     )
                 }
                 Box(
-                    modifier = Modifier.padding(end = 15.dp),
+                    modifier = Modifier.padding(top = 25.dp,end = 35.dp),
                     contentAlignment = Alignment.CenterEnd
                 ) {
                     Image(
@@ -110,7 +111,8 @@ fun BodySection(
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .offset(y = (-90).dp),
         shape = RoundedCornerShape(12.dp),
         elevation = CardDefaults.cardElevation(8.dp)
     ) {
@@ -212,7 +214,8 @@ fun ListDokter(
     LazyColumn(
         modifier = modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .offset(y = (-100).dp),
         verticalArrangement = Arrangement.spacedBy(12.dp)
     ) {
         items(
