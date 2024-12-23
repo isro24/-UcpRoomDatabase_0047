@@ -30,7 +30,7 @@ import com.example.ucp2.ui.viewmodel.dokter.DokterViewModel
 import kotlinx.coroutines.launch
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ucp2.data.DokterSpesialis
+import com.example.ucp2.data.model.DokterSpesialis
 import com.example.ucp2.ui.costumwidget.DynamicSelectedField
 import com.example.ucp2.ui.costumwidget.TopAppBar
 import com.example.ucp2.ui.viewmodel.dokter.DokterEvent
@@ -51,6 +51,8 @@ fun InsertDokterView(
     val uiState = viewModel.uistate
     val snackbarHostState = remember { SnackbarHostState() }
     val coroutineScope = rememberCoroutineScope()
+
+
 
     LaunchedEffect(uiState.snackBarMessage) {
         uiState.snackBarMessage?.let { message ->

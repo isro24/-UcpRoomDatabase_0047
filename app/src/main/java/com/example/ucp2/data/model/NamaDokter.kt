@@ -1,4 +1,4 @@
-package com.example.ucp2.data
+package com.example.ucp2.data.model
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState

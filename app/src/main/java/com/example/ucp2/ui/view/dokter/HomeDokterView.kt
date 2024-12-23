@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.R
+import com.example.ucp2.data.model.DokterSpesialisColor
 import com.example.ucp2.data.entity.Dokter
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.dokter.HomeDokterViewModel
@@ -247,7 +248,7 @@ fun ListDokter(
                                         Text(
                                             text = dktr.spesialis,
                                             fontSize = 14.sp,
-                                            color = Color.Gray
+                                            color = DokterSpesialisColor(dktr.spesialis)
                                         )
                                     }
                                     Row {
@@ -284,13 +285,6 @@ fun ListDokter(
                                     }
                                 }
                             }
-
-                            /*
-                            Text(
-                                text = dktr.jamKerja,
-                                fontSize = 12.sp,
-                                color = Color.Gray
-                            )*/
                         }
                     }
                 }

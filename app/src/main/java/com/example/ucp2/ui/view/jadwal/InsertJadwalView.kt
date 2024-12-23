@@ -23,7 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.example.ucp2.data.NamaDokter
+import com.example.ucp2.data.model.NamaDokter
 import com.example.ucp2.ui.costumwidget.DynamicSelectedFieldDokter
 import com.example.ucp2.ui.costumwidget.TopAppBar
 import com.example.ucp2.ui.navigation.AlamatNavigasi
