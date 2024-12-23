@@ -272,7 +272,6 @@ fun BodySection(
     } else {
         ListDokter(
             listDokter = homeUiState.listDokter,
-            onClick = onJadwalView
         )
     }
 }
@@ -281,7 +280,6 @@ fun BodySection(
 fun ListDokter(
     listDokter: List<Dokter>,
     modifier: Modifier = Modifier,
-    onClick: (String) -> Unit = {}
 ) {
     LazyColumn(
         modifier = modifier
