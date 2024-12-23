@@ -15,10 +15,15 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Call
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -180,13 +185,17 @@ fun BodySection(
             ) {
                 Button(
                     onClick = onAddJadwal,
-                    modifier = Modifier.weight(0.5f).padding(end = 8.dp)
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(end = 8.dp)
                 ) {
                     Text("Tambah Jadwal")
                 }
                 Button(
                     onClick = onKembali,
-                    modifier = Modifier.weight(0.5f).padding(start = 8.dp)
+                    modifier = Modifier
+                        .weight(0.5f)
+                        .padding(start = 8.dp)
                 ) {
                     Text("Kembali")
                 }
@@ -246,34 +255,64 @@ fun CardJadwal(
             verticalAlignment = Alignment.CenterVertically
         ) {
             Image(
-                painter = painterResource(id = R.drawable.chat),
+                painter = painterResource(id = R.drawable.user),
                 contentDescription = "Dokter Icon",
                 modifier = Modifier
-                    .size(60.dp)
+                    .size(80.dp)
                     .clip(CircleShape)
-                    .background(Color(0xFF0E91F3))
                     .padding(8.dp)
             )
             Spacer(modifier = Modifier.width(12.dp))
             Column(
                 verticalArrangement = Arrangement.spacedBy(4.dp)
             ) {
-                Text(
-                    text = jadwal.namaPasien,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp,
-                    color = Color.Black
-                )
-                Text(
-                    text = jadwal.tanggalKonsultasi,
-                    fontSize = 14.sp,
-                    color = Color.Gray
-                )
-                Text(
-                    text = jadwal.noHp,
-                    fontSize = 12.sp,
-                    color = Color.Gray
-                )
+                Row {
+                    Column {
+                        Text(
+                            text = jadwal.namaPasien,
+                            fontWeight = FontWeight.Bold,
+                            fontSize = 16.sp,
+                            color = Color.Black
+                        )
+                        Text(
+                            text = jadwal.status,
+                            fontSize = 12.sp,
+                            color = Color.Gray
+                        )
+                        Row {
+                            Icon(
+                                imageVector = Icons.Filled.DateRange,
+                                contentDescription = "Tanggal Konsultasi",
+                                modifier = Modifier
+                                    .size(20.dp)
+                                    .padding(top = 6.dp),
+                                tint = MaterialTheme.colorScheme.secondary
+                            )
+                            Text(
+                                text = jadwal.tanggalKonsultasi,
+                                fontSize = 14.sp,
+                                color = Color.Gray,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
+                        Row {
+                            Icon(
+                                imageVector = Icons.Filled.Call,
+                                contentDescription = "No Hp",
+                                modifier = Modifier
+                                    .size(20.dp)
+                                    .padding(top = 6.dp),
+                                tint = MaterialTheme.colorScheme.secondary
+                            )
+                            Text(
+                                text = jadwal.noHp,
+                                fontSize = 12.sp,
+                                color = Color.Gray,
+                                modifier = Modifier.padding(top = 4.dp)
+                            )
+                        }
+                    }
+                }
             }
         }
     }
