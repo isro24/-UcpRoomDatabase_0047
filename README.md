@@ -3,7 +3,10 @@
 
 ** Dokter Spesialis **
 ![Dokter Spesialis](https://github.com/user-attachments/assets/eaf87ac7-8707-43c1-8ecf-a6f8a83dd771)
-   
+
+** Tambah Dokter (Input Error) **
+![Tambah Dokter (Input Error)](https://github.com/user-attachments/assets/74301e3f-ae3f-460a-b49a-3f212d3074ea)
+
 ** Tambah Dokter **
 ![Tambah Dokter](https://github.com/user-attachments/assets/1ea04f4c-b40b-4318-b747-13dd50cc2d14)
    
@@ -18,7 +21,10 @@
 
 ** List Nama Dokter **
 ![List Nama Dokter](https://github.com/user-attachments/assets/42004811-fa58-4db5-bb9f-49bd45457781)
-   
+
+** Tambah Jadwal (Input Error) **
+![Tambah Jadwal (Input Error)](https://github.com/user-attachments/assets/040511b2-702a-4204-b7c7-2a94754a2c03)
+ 
 ** Tambah Jadwal **
 ![Tambah Jadwal](https://github.com/user-attachments/assets/961c3e7f-cc39-4cdb-82bd-18cf87ca4dac)
     
@@ -30,6 +36,9 @@
     
 ** Detail Jadwal **
 ![Detail Jadwal](https://github.com/user-attachments/assets/58b9052d-6a37-4f84-b2a9-9405db8963b0)
+
+** Edit Jadwal (Input Error) **
+![Edit Jadwal (Input Error)](https://github.com/user-attachments/assets/e30c7c85-04f4-4f86-b2d1-ee1eb3eea428)
     
 ** Edit Jadwal **
 ![Edit Jadwal](https://github.com/user-attachments/assets/aa8f46b9-a342-4b46-9d29-91a7d4617dcb)
