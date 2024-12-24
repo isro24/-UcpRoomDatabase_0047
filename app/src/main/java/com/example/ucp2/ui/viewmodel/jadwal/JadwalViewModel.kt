@@ -18,7 +18,7 @@ class JadwalViewModel(private val repositoryJadwal: RepositoryJadwal) : ViewMode
         )
     }
 
-    private fun validateFields(): Boolean {
+    fun validateFields(): Boolean {
         val event = uistate.jadwalEvent
         val errorState = FormErrorState(
             namaDokter = if (event.namaDokter.isNotEmpty()) null else "Nama Dokter tidak boleh kosong",
@@ -37,16 +37,13 @@ class JadwalViewModel(private val repositoryJadwal: RepositoryJadwal) : ViewMode
         if (validateFields()) {
             viewModelScope.launch {
                 try {
-                    println("Mencoba menyimpan data: $currentEvent")
                     repositoryJadwal.insertJdwl(currentEvent.toJadwalEntity())
-                    println("Data berhasil disimpan")
                     uistate = uistate.copy(
                         snackBarMessage = "Data berhasil disimpan",
                         jadwalEvent = JadwalEvent(),
                         isEntryValid = FormErrorState()
                     )
                 } catch (e: Exception) {
-                    println("Gagal menyimpan data: ${e.message}")
                     uistate = uistate.copy(
                         snackBarMessage = "Data gagal disimpan"
                     )
@@ -98,8 +95,7 @@ data class FormErrorState(
     val status: String? = null,
 ) {
     fun isValid(): Boolean {
-        return id == null
-                && namaDokter == null
+        return namaDokter == null
                 && namaPasien == null
                 && noHp == null
                 && tanggalKonsultasi == null

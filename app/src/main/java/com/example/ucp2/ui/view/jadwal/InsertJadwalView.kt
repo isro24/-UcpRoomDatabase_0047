@@ -42,7 +42,10 @@ import com.example.ucp2.ui.viewmodel.jadwal.JadwalViewModel
 import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp2.ui.viewmodel.jadwal.FormErrorState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 object DestinasiInsertJadwal : AlamatNavigasi {
     override val route: String = "insert_jadwal"
@@ -103,9 +106,16 @@ fun InsertJadwalView(
                 },
                 onClick = {
                     coroutineScope.launch {
-                        viewModel.saveData()
+                        if (viewModel.validateFields()) {
+                            viewModel.saveData()
+                            delay(600)
+                            withContext(Dispatchers.Main) {
+                                onNavigate()
+                            }
+                        } else {
+                            snackbarHostState.showSnackbar("Field tidak valid!")
+                        }
                     }
-                    onNavigate()
                 },
                 uiState = uiState
             )

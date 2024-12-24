@@ -17,7 +17,7 @@ class DokterViewModel (private val repositoryDokter: RepositoryDokter) : ViewMod
             dokterEvent = dokterEvent
         )
     }
-    private fun validateFields(): Boolean {
+    fun validateFields(): Boolean {
         val event = uistate.dokterEvent
         val errorState = FormErrorState(
             nama = if (event.nama.isNotEmpty()) null else "Nama tidak boleh kosong",
@@ -35,24 +35,19 @@ class DokterViewModel (private val repositoryDokter: RepositoryDokter) : ViewMod
         if (validateFields()) {
             viewModelScope.launch {
                 try {
-                    println("Mencoba menyimpan data: $currentEvent")
                     repositoryDokter.insertDktr(currentEvent.toDokterEntity())
-                    println("Data berhasil disimpan")
                     uistate = uistate.copy(
                         snackBarMessage = "Data berhasil disimpan",
                         dokterEvent = DokterEvent(),
                         isEntryValid = FormErrorState()
                     )
                 } catch (e: Exception) {
-
-                    println("Gagal menyimpan data: ${e.message}")
                     uistate = uistate.copy(
                         snackBarMessage = "Data gagal disimpan"
                     )
                 }
             }
         } else {
-            println("Validasi gagal: ${uistate.isEntryValid}")
             uistate = uistate.copy(
                 snackBarMessage = "Input tidak valid, Periksa kembali data Anda"
             )

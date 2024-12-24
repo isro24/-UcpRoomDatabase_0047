@@ -47,6 +47,9 @@ import com.example.ucp2.ui.viewmodel.dokter.DokterEvent
 import com.example.ucp2.ui.viewmodel.dokter.DokterUIState
 import com.example.ucp2.ui.viewmodel.dokter.FormErrorState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 object DestinasiInsertDokter : AlamatNavigasi {
     override val route: String = "insert_dktr"
@@ -108,9 +111,16 @@ fun InsertDokterView(
                 },
                 onClick = {
                     coroutineScope.launch {
-                        viewModel.saveData()
+                        if (viewModel.validateFields()) {
+                            viewModel.saveData()
+                            delay(600)
+                            withContext(Dispatchers.Main) {
+                                onNavigate()
+                            }
+                        } else {
+                            snackbarHostState.showSnackbar("Field tidak valid!")
+                        }
                     }
-                    onNavigate()
                 },
                 uiState = uiState
             )
